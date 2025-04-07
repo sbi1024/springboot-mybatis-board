@@ -4,6 +4,7 @@ import com.test.example.springbootmybatisboard.auth.service.LoginService;
 import com.test.example.springbootmybatisboard.user.dto.UserDto;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,8 +26,6 @@ public class LoginController {
     @PostMapping("/login")
     @ResponseBody
     public Map<String, String> login(UserDto userDto, HttpSession session) {
-
-        System.out.println(userDto);
         HashMap<String, String> map = new HashMap<>();
 
         Optional<UserDto> optional = loginService.login(userDto);
@@ -41,5 +40,12 @@ public class LoginController {
 
         map.put("result", "fail");
         return map;
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        System.out.println(session.getAttribute("userDto"));
+        session.invalidate();
+        return "login";
     }
 }

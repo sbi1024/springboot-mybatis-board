@@ -1,5 +1,6 @@
 package com.test.example.springbootmybatisboard.common;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,5 +21,11 @@ public class PageController {
     @GetMapping("/pages/board")
     public String board() {
         return "board";
+    }
+
+    @GetMapping("/pages/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "login";
     }
 }
