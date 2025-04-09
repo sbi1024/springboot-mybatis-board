@@ -1,13 +1,14 @@
 package com.test.example.springbootmybatisboard.board.controller;
 
+import com.test.example.springbootmybatisboard.board.dto.BoardDto;
 import com.test.example.springbootmybatisboard.board.dto.BoardParamDto;
 import com.test.example.springbootmybatisboard.board.dto.BoardResultDto;
 import com.test.example.springbootmybatisboard.board.service.BoardService;
+import com.test.example.springbootmybatisboard.user.dto.UserDto;
+import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/boards")
@@ -32,5 +33,39 @@ public class BoardController {
             System.out.println(boardResultDto);
         }
         return boardResultDto;
+    }
+
+    @GetMapping("/detail/{boardId}")
+    @ResponseBody
+    public BoardResultDto detailBoard(@PathVariable Integer boardId, HttpSession session) {
+        BoardParamDto boardParamDto = new BoardParamDto();
+        boardParamDto.setBoardId(boardId);
+
+        int userSeq = ((UserDto) session.getAttribute("userDto")).getUserSeq();
+        boardParamDto.setUserSeq(userSeq);
+
+        System.out.println(boardService.detatailBoard(boardParamDto));
+
+        return boardService.detatailBoard(boardParamDto);
+    }
+
+    @PostMapping("/insert")
+    @ResponseBody
+    public BoardResultDto insertBoard(BoardDto boardDto, HttpSession session) {
+        int userSeq = ((UserDto) session.getAttribute("userDto")).getUserSeq();
+        boardDto.setUserSeq(userSeq);
+        return boardService.insertBoard(boardDto);
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public BoardResultDto insertBoard(BoardDto boardDto) {
+        return boardService.updateBoard(boardDto);
+    }
+
+    @GetMapping("/delete/{boardId}")
+    @ResponseBody
+    public BoardResultDto deleteBoard(@PathVariable("boardId") int boardId) {
+        return boardService.deleteBoard(boardId);
     }
 }

@@ -15,4 +15,12 @@ public interface BoardDao {
     List<BoardDto> listBoardSearchWord(BoardParamDto boardParamDto);
 
     int listBoardTotalCountSearchWord(BoardParamDto boardParamDto);
+
+    BoardDto detailBoard(BoardParamDto boardParamDto);
+
+    int insertBoard(BoardDto boardDto);
+
+    int updateBoard(BoardDto boardDto);
+
+    int deleteBoard(int boardId);
 }

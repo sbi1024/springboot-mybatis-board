@@ -9,23 +9,23 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-//    @Autowired
-//    private LoginInterceptor loginInterceptor;
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(loginInterceptor)
-//                .addPathPatterns("/**")
-//                .excludePathPatterns(
-//                        "/",
-//                        "/index.html",
-//                        "/favicon.ico",
-//                        "/assets/**",
-//                        "/pages/login",
-//                        "/pages/register",
-//                        "/auth/**",
-//                        "/users/**"
-//                );
-//
-//    }
+    @Autowired
+    private LoginInterceptor loginInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loginInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns(
+                        "/",
+                        "/index.html",
+                        "/favicon.ico",
+                        "/assets/**",
+                        "/pages/login",
+                        "/pages/register",
+                        "/auth/**",
+                        "/users/**"
+                );
+
+    }
 }

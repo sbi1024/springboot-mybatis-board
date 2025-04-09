@@ -5,17 +5,15 @@ import java.util.List;
 public class BoardResultDto {
     private String result;
     private List<BoardDto> list;
-    private BoardDto dot;
+    private BoardDto dto;
     private int count;
-
-
 
     @Override
     public String toString() {
         return "BoardResultDto{" +
                 "result='" + result + '\'' +
                 ", list=" + list +
-                ", dot=" + dot +
+                ", dto=" + dto +
                 ", count=" + count +
                 '}';
     }
@@ -36,12 +34,12 @@ public class BoardResultDto {
         this.list = list;
     }
 
-    public BoardDto getDot() {
-        return dot;
+    public BoardDto getDto() {
+        return dto;
     }
 
-    public void setDot(BoardDto dot) {
-        this.dot = dot;
+    public void setDto(BoardDto dto) {
+        this.dto = dto;
     }
 
     public int getCount() {
