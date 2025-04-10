@@ -44,9 +44,7 @@ public class BoardController {
         int userSeq = ((UserDto) session.getAttribute("userDto")).getUserSeq();
         boardParamDto.setUserSeq(userSeq);
 
-        System.out.println(boardService.detatailBoard(boardParamDto));
-
-        return boardService.detatailBoard(boardParamDto);
+        return boardService.detailBoard(boardParamDto);
     }
 
     @PostMapping("/insert")

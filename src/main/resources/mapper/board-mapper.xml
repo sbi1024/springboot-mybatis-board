@@ -86,4 +86,22 @@
         where 1 = 1
         and board.board_id = #{boardId}
     </delete>
+
+    <select id="countBoardUserRead" parameterType="com.test.example.springbootmybatisboard.board.dto.BoardParamDto">
+        select count(*)
+        from board.board_user_read
+        where 1 = 1
+          and board_id = #{boardId}
+          and user_seq = #{userSeq};
+    </select>
+
+    <insert id="insertBoardUserRead" parameterType="com.test.example.springbootmybatisboard.board.dto.BoardParamDto">
+        insert into board.board_user_read ( board_id, user_seq) values ( #{boardId}, #{userSeq});
+    </insert>
+
+    <update id="updateBoardReadCount" parameterType="int">
+        update board.board
+        set read_count = read_count + 1
+        where board_id = #{boardId};
+    </update>
 </mapper>

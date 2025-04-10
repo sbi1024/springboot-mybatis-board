@@ -23,4 +23,10 @@ public interface BoardDao {
     int updateBoard(BoardDto boardDto);
 
     int deleteBoard(int boardId);
+
+    int countBoardUserRead(BoardParamDto boardParamDto);
+
+    int insertBoardUserRead(BoardParamDto boardParamDto);
+
+    int updateBoardReadCount(int boardId);
 }

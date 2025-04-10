@@ -8,7 +8,8 @@ public interface BoardService {
     BoardResultDto listBoard(BoardParamDto boardParamDto);
     BoardResultDto listBoardSearchWord(BoardParamDto boardParamDto);
 
-    BoardResultDto detatailBoard(BoardParamDto boardParamDto);
+    BoardResultDto detailBoard(BoardParamDto boardParamDto);
+
     BoardResultDto insertBoard(BoardDto boardDto);
     BoardResultDto updateBoard(BoardDto boardDto);
     BoardResultDto deleteBoard(int boardId);

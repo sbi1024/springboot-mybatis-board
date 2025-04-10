@@ -59,10 +59,22 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public BoardResultDto detatailBoard(BoardParamDto boardParamDto) {
+    public BoardResultDto detailBoard(BoardParamDto boardParamDto) {
         BoardResultDto boardResultDto = new BoardResultDto();
         // 예외 처리
         try {
+
+            int userReadCnt = boardDao.countBoardUserRead(boardParamDto);
+
+            System.out.println(">>>>>>>>>>>>>>>>>>> userReadCnt : " + userReadCnt);
+            System.out.println(">>>>>>>>>>>>>>>>>>> boardId : " + boardParamDto.getBoardId());
+            System.out.println(">>>>>>>>>>>>>>>>>>> userSeq : " + boardParamDto.getUserSeq());
+
+            if (userReadCnt == 0) {
+                boardDao.insertBoardUserRead(boardParamDto);
+                boardDao.updateBoardReadCount(boardParamDto.getBoardId());
+            }
+
             BoardDto boardDto = boardDao.detailBoard(boardParamDto);
             if (boardDto.getUserSeq() == boardParamDto.getUserSeq()) {
                 boardDto.setSameUser(true);
